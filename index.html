@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bubs and Duck Night in the Museum</title>
+    <link rel="preload" href="./assets/IMG_1201.jpeg" as="image">
+    <link rel="stylesheet" href="./style.css">
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./node_modules/three/build/three.module.js",
+          "three/addons/": "./node_modules/three/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module" src="./room.js"></script>
+  </head>
+  <body>
+    <main>
+      <div id="game" inert>
+        <canvas tabindex="-1" aria-label="A 3D room with a closed door"></canvas>
+        <p id="control-hint" role="status"></p>
+        <p id="inspect-prompt" hidden></p>
+        <div id="controls">
+          <div id="look-buttons" role="group" aria-label="Look around" hidden>
+            <button type="button" data-look="ArrowLeft" aria-label="Look left">←</button>
+            <button type="button" data-look="ArrowUp" aria-label="Look up">↑</button>
+            <button type="button" data-look="ArrowDown" aria-label="Look down">↓</button>
+            <button type="button" data-look="ArrowRight" aria-label="Look right">→</button>
+          </div>
+        </div>
+        <div id="crosshair" aria-hidden="true" hidden></div>
+      </div>
+      <section id="welcome-screen" aria-labelledby="game-title">
+        <div class="welcome-layout">
+          <div>
+            <h1 id="game-title">
+              <span>Bubs and Duck</span>
+              Night in the Museum
+            </h1>
+            <div class="welcome-divider" aria-hidden="true"><span></span></div>
+            <button id="enter-museum" type="button" disabled>Loading museum…</button>
+            <p id="loading-status" role="status"></p>
+          </div>
+          <div class="welcome-photos">
+            <img src="./assets/IMG_1201.jpeg" width="480" height="640" alt="The couple smiling beneath a tusked skeleton">
+            <img src="./assets/IMG_5996.jpeg" width="640" height="480" alt="The couple smiling outside the Metropolitan Museum of Art">
+          </div>
+        </div>
+      </section>
+      <section id="ending-screen" aria-labelledby="ending-title" hidden>
+        <div class="ending-layout">
+          <div>
+            <h1 id="ending-title" tabindex="-1">Happy 3 Years!!!</h1>
+            <p class="ending-message">Yayyyy you did it! I knew you had it in you. Hope you enjoyed da date night and I LAB YUUU</p>
+            <p class="ending-signature">Love, MonkiHippoFroggiDoggie</p>
+            <button id="play-again" type="button">Play again</button>
+          </div>
+          <img class="ending-photo" src="./assets/IMG_5689.jpeg" width="640" height="480" alt="Bubs and Duck together with a bouquet of pink flowers">
+        </div>
+      </section>
+      <dialog id="inspection" aria-labelledby="inspection-title">
+        <div class="inspection-header">
+          <h2 id="inspection-title" tabindex="-1"></h2>
+          <button id="close-inspection" type="button" aria-label="Close inspection" autofocus>×</button>
+        </div>
+        <div id="inspection-content"></div>
+        <form id="drawer-form" hidden>
+          <label for="drawer-code">Four-digit code</label>
+          <div class="drawer-entry">
+            <input id="drawer-code" type="text" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="off" required>
+            <button type="submit">Unlock</button>
+          </div>
+          <p id="drawer-feedback" role="status"></p>
+        </form>
+      </dialog>
+    </main>
+  </body>
+</html>

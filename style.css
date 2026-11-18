@@ -1,0 +1,665 @@
+:root {
+  color-scheme: dark;
+  font-family: system-ui, sans-serif;
+  background: #142e24;
+  color: #fcf5e9;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  position: relative;
+  height: 100dvh;
+}
+
+#game {
+  height: 100%;
+}
+
+#welcome-screen:not([hidden]) {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  overflow: auto;
+  background: radial-gradient(ellipse at 78% 40%, #244d38, #10271e 78%);
+  color: #fffdf5;
+}
+
+#welcome-screen::before {
+  position: absolute;
+  inset: clamp(0.65rem, 2vw, 1.5rem);
+  border: 1px solid #fffdf54d;
+  content: "";
+  pointer-events: none;
+}
+
+.welcome-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.75rem, 4vw, 4rem);
+  width: min(100%, 80rem);
+  box-sizing: border-box;
+  margin: auto;
+  padding: clamp(2rem, 6vw, 5rem);
+}
+
+#game-title {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.85rem, 5.8vw, 5.75rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+#game-title span {
+  display: block;
+  margin-bottom: 0.7em;
+  font-size: 0.35em;
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+.welcome-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: clamp(1.15rem, 4svh, 2rem) 0 1.2rem;
+  color: #fffdf5a3;
+}
+
+.welcome-divider::before,
+.welcome-divider::after {
+  width: 2.75rem;
+  height: 1px;
+  background: currentColor;
+  content: "";
+}
+
+.welcome-divider span {
+  width: 0.35rem;
+  height: 0.35rem;
+  border: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.welcome-photos {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  align-items: end;
+  gap: clamp(0.65rem, 1.7vw, 1.4rem);
+  padding: 0.75rem 0.5rem 1.5rem;
+}
+
+.welcome-photos img {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: clamp(0.35rem, 0.9vw, 0.7rem);
+  box-sizing: border-box;
+  background: #fffdf5;
+  box-shadow: 0 0.85rem 1.65rem #07130e99;
+}
+
+.welcome-photos img:first-child {
+  transform: rotate(-4deg);
+}
+
+.welcome-photos img + img {
+  transform: translateY(0.7rem) rotate(5deg);
+}
+
+@media (max-width: 48rem) {
+  .welcome-layout {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    text-align: center;
+  }
+
+  .welcome-divider {
+    justify-content: center;
+  }
+
+  .welcome-photos {
+    width: min(100%, 25rem);
+    box-sizing: border-box;
+  }
+}
+
+#enter-museum {
+  min-width: 11.5rem;
+  border: 1px solid #fffdf5;
+  border-radius: 2rem;
+  background: #fffdf5;
+  color: #17382a;
+  box-shadow: 0 0.4rem 1.5rem #07130e66;
+}
+
+#enter-museum:hover:not(:disabled) {
+  background: #e1efdf;
+}
+
+#enter-museum:disabled {
+  background: #17382ae8;
+  color: #fffdf5;
+  cursor: wait;
+}
+
+#enter-museum:focus-visible {
+  outline: 2px solid #fffdf5;
+  outline-offset: 4px;
+}
+
+#loading-status:empty {
+  margin: 0;
+}
+
+#ending-screen:not([hidden]) {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  overflow: auto;
+  background:
+    radial-gradient(ellipse at 100% 100%, #efb7c7, #d892ac 23%, transparent 60%),
+    linear-gradient(125deg, #142e24 25%, #254a39 70%, #42705a);
+  color: #fff9f5;
+  animation: anniversary-fade 950ms ease both;
+}
+
+@keyframes anniversary-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.ending-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.93fr);
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 4.25rem);
+  box-sizing: border-box;
+  width: min(100%, 73rem);
+  margin: auto;
+  padding: clamp(1.5rem, 6vw, 5rem);
+}
+
+#ending-title {
+  margin: 0;
+  font: 400 clamp(2.6rem, 7vw, 6rem) / 0.98 Georgia, "Times New Roman", serif;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+
+.ending-message {
+  max-width: 30ch;
+  margin-top: 1.15rem;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.5;
+}
+
+.ending-signature {
+  margin-top: 0.6rem;
+  color: #ffd4de;
+  font: italic 1.3rem "Segoe Print", "Bradley Hand", Georgia, serif;
+}
+
+.ending-photo {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  padding: clamp(0.5rem, 1.25vw, 0.8rem);
+  background: #fff7ee;
+  box-shadow: 0 1rem 3rem #10231c75;
+  transform: rotate(3deg);
+}
+
+#play-again {
+  margin-top: 1.5rem;
+  border-radius: 2rem;
+  background: #f8ced9;
+  color: #17382a;
+}
+
+#play-again:hover {
+  background: #ffe6ed;
+}
+
+@media (max-width: 43rem) {
+  .ending-layout {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    text-align: center;
+  }
+
+  .ending-photo {
+    max-width: 23rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #ending-screen:not([hidden]) {
+    animation-duration: 1ms;
+  }
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#control-hint {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  box-sizing: border-box;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.35rem;
+  background: #252421e6;
+  font-size: 0.875rem;
+  text-align: center;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 180ms ease, visibility 180ms;
+}
+
+#control-hint.is-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #control-hint {
+    transition: none;
+  }
+}
+
+#controls {
+  position: absolute;
+  right: 1rem;
+  bottom: 2rem;
+  left: 1rem;
+  text-align: center;
+  text-shadow: 0 1px 5px #171613;
+  pointer-events: none;
+}
+
+button {
+  border: 0;
+  border-radius: 0.35rem;
+  padding: 0.7rem 1.25rem;
+  background: #fff0d7;
+  color: #26221d;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background-color: #ffdfab;
+}
+
+#look-buttons:not([hidden]) {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+#look-buttons button {
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  font-size: 1.25rem;
+  pointer-events: auto;
+}
+
+p {
+  margin: 0.65rem 0 0;
+}
+
+#inspect-prompt {
+  position: absolute;
+  top: calc(50% + 0.9rem);
+  left: 50%;
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  margin: 0;
+  transform: translateX(-50%);
+  border-radius: 0.35rem;
+  padding: 0.4rem 0.65rem;
+  background: #142e24ed;
+  text-align: center;
+  pointer-events: none;
+}
+
+#inspection {
+  width: min(29rem, calc(100% - 2rem));
+  box-sizing: border-box;
+  max-height: min(90dvh, 52rem);
+  padding: clamp(1rem, 4vw, 2rem);
+  border: 1px solid #cebf9e;
+  border-radius: 0.5rem;
+  background: #fffaf0;
+  color: #183728;
+  color-scheme: light;
+  box-shadow: 0 1rem 3rem #08160dcc;
+}
+
+#inspection::backdrop {
+  background: #091910b8;
+}
+
+#inspection:has(.drawer-success) {
+  margin: 1rem auto auto;
+}
+
+#inspection:has(.drawer-success)::backdrop {
+  background: #09191038;
+}
+
+#inspection:has(.crossword-panel) {
+  width: min(65rem, calc(100% - 1.25rem));
+}
+
+.inspection-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.inspection-header h2 {
+  margin: 0;
+  font: 400 clamp(1.7rem, 5vw, 2.35rem)/1.1 Georgia, serif;
+}
+
+#close-inspection {
+  padding: 0;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  font-size: 1.5rem;
+}
+
+#inspection-content {
+  line-height: 1.55;
+}
+
+#inspection-content img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 49dvh;
+  margin: 1rem auto 0;
+  border-radius: 0.2rem;
+}
+
+.bubs-letter {
+  --letter-line: 1.9rem;
+  overflow-wrap: anywhere;
+  margin-top: 1rem;
+  padding: 1rem clamp(0.75rem, 4vw, 1.5rem);
+  border: 1px solid #d8c8a7;
+  background: repeating-linear-gradient(
+    #f7efd9 0 calc(var(--letter-line) - 1px),
+    #e1d6ba calc(var(--letter-line) - 1px) var(--letter-line)
+  ) 0 1rem;
+  color: #294634;
+  font: italic 1.2rem / var(--letter-line) "Segoe Print", "Bradley Hand", "Comic Sans MS", Georgia, serif;
+}
+
+.bubs-letter p {
+  margin: 0;
+}
+
+.bubs-letter p + p {
+  margin-top: var(--letter-line);
+}
+
+.bubs-signature {
+  font-size: 1.4rem;
+  white-space: pre-line;
+}
+
+.exhibit-number {
+  font-weight: 600;
+  text-align: center;
+}
+
+#drawer-form,
+.letter-lock {
+  margin-top: 1.25rem;
+}
+
+.drawer-entry {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+#drawer-code,
+.letter-lock input {
+  width: 6rem;
+  padding: 0.55rem;
+  border: 1px solid #8c9a8e;
+  border-radius: 0.35rem;
+  font: inherit;
+  text-align: center;
+  letter-spacing: 0.22em;
+}
+
+.letter-lock input {
+  text-transform: uppercase;
+}
+
+.drawer-entry button,
+.inspection-action {
+  background: #17382a;
+  color: #fffdf5;
+}
+
+.drawer-entry button:hover,
+.inspection-action:hover {
+  background: #28553e;
+}
+
+.inspection-action {
+  margin-top: 0.85rem;
+}
+
+.key-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+#drawer-feedback:empty,
+.lock-feedback:empty {
+  margin: 0;
+}
+
+.crossword-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(12rem, 1fr);
+  align-items: start;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  margin-top: 1rem;
+}
+
+.crossword-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--crossword-columns), minmax(0, 1fr));
+  gap: 1px;
+  padding: 1px;
+  background: #254437;
+}
+
+.crossword-square {
+  position: relative;
+  aspect-ratio: 1;
+}
+
+.crossword-square input {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 12% 0 0;
+  border: 0;
+  border-radius: 0;
+  background: #fffaf0;
+  color: #17382a;
+  font: 600 clamp(0.7rem, 2.3vw, 1.1rem)/1 system-ui, sans-serif;
+  text-align: center;
+}
+
+.crossword-square input.is-current-word {
+  background: #e1eee1;
+}
+
+.crossword-square.is-tagged input {
+  background: #f8da8c;
+}
+
+.crossword-square input:focus {
+  outline: 2px solid #2e7456;
+  outline-offset: -2px;
+}
+
+.crossword-number,
+.crossword-tag {
+  position: absolute;
+  top: 1px;
+  color: #254437;
+  font: 700 clamp(0.45rem, 1.3vw, 0.65rem)/1 system-ui, sans-serif;
+  pointer-events: none;
+}
+
+.crossword-number {
+  left: 2px;
+}
+
+.crossword-tag {
+  right: 2px;
+}
+
+.crossword-clues h3 {
+  margin: 0 0 0.3rem;
+  font: 400 1.25rem Georgia, serif;
+}
+
+.crossword-clues h3:not(:first-child) {
+  margin-top: 0.8rem;
+}
+
+.crossword-clues button {
+  display: block;
+  width: 100%;
+  padding: 0.37rem 0.55rem;
+  background: transparent;
+  color: #183728;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-align: left;
+}
+
+.crossword-clues button:hover,
+.crossword-clues button[aria-pressed="true"] {
+  background: #e1eee1;
+}
+
+@media (max-width: 43rem) {
+  .crossword-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (pointer: coarse) {
+  .crossword-square input {
+    font-size: max(16px, 1rem);
+  }
+}
+
+#inspection:has(.photo-puzzle) {
+  width: min(35rem, calc(100% - 1.25rem));
+}
+
+.photo-tiles {
+  margin-top: 0.9rem;
+  border: 3px solid #254437;
+  border-radius: 0.25rem;
+  background: #254437;
+}
+
+.photo-tiles:not(.is-restored) {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2px;
+}
+
+.photo-tiles button {
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  border-radius: 0;
+  background-size: 300% 300%;
+  background-repeat: no-repeat;
+}
+
+.photo-tiles button:disabled {
+  cursor: default;
+}
+
+.photo-tiles button[aria-pressed="true"] {
+  box-shadow: inset 0 0 0 4px #ffe29d;
+}
+
+.photo-tiles button:focus-visible {
+  outline: 3px solid #fffaf0;
+  outline-offset: -3px;
+}
+
+#inspection-content .photo-tiles img {
+  width: 100%;
+  max-height: none;
+  margin: 0;
+  border-radius: 0;
+}
+
+.photo-back {
+  display: grid;
+  place-content: center;
+  box-sizing: border-box;
+  aspect-ratio: 4 / 3;
+  padding: 1rem;
+  background: #f5ead3;
+  text-align: center;
+}
+
+.photo-back strong {
+  font: italic 700 clamp(1.8rem, 7vw, 3.1rem) "Segoe Print", "Bradley Hand", Georgia, serif;
+  letter-spacing: 0.15em;
+}
+
+#crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #fff0d7;
+  box-shadow: 0 0 3px #26221d;
+  pointer-events: none;
+}
